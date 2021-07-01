@@ -1,0 +1,127 @@
+[
+{
+    "model": "api.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$VexuMS9uvZAc$4Ejr0da2rm+Dhi/vD/UblwaIssFkDSSt9fFE96Zwg6A=",
+        "last_login": "2021-05-28T14:28:37.931Z",
+        "is_superuser": true,
+        "username": "dxd",
+        "first_name": "",
+        "last_name": "",
+        "email": "dxd@mail.ru",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-05-25T15:13:22.953Z",
+        "role": "student",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "api.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$RfJ7GS8BxnQb$QdP/8xh5WSnRnI1drS/LGx4mgWsBocmgJ/Rp25RZkvY=",
+        "last_login": "2021-05-27T15:58:18.756Z",
+        "is_superuser": false,
+        "username": "student",
+        "first_name": "",
+        "last_name": "",
+        "email": "student@mail.ru",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-05-27T15:58:18.620Z",
+        "role": "student",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+    {
+    "model": "dnevnik.subject",
+    "pk": 1,
+    "fields": {
+        "subject_name": "Subject",
+        "teachers": [
+            1
+        ]
+    }
+},
+{
+    "model": "dnevnik.school",
+    "pk": 1,
+    "fields": {
+        "city_name": "Moskva",
+        "school_num": 13
+    }
+},
+{
+    "model": "dnevnik.lesson",
+    "pk": 1,
+    "fields": {
+        "subject": 1,
+        "theme": "Нет темы.",
+        "homework": "Нет Д/З.",
+        "lesson_begin": "2021-05-27T15:48:17Z",
+        "lesson_end": "2021-05-27T15:48:17Z",
+        "conference_link": "",
+        "teacher": 1,
+        "creation_date": "2021-05-27T15:48:30.586Z",
+        "exercises": [
+            1
+        ]
+    }
+},
+{
+    "model": "dnevnik.klass",
+    "pk": 1,
+    "fields": {
+        "school": 1,
+        "genus_sym": "А",
+        "genus_num": 666,
+        "master": 1,
+        "tg_link": null,
+        "tg_chat_id": null,
+        "students": [
+            1
+        ],
+        "lessons": [
+            1
+        ]
+    }
+},
+{
+    "model": "uchebnik.exercise",
+    "pk": 1,
+    "fields": {
+        "name": "exercise",
+        "creator": 1,
+        "creation_date": "2021-05-25T15:13:35Z",
+        "timer": 360,
+        "limit_of_tries": 1,
+        "visible_valid_answers": false,
+        "tag_name": "математикаааааааа"
+    }
+},
+{
+    "model": "uchebnik.question",
+    "pk": 1,
+    "fields": {
+        "question_text": "Question",
+        "exercise": 1
+    }
+},
+{
+    "model": "uchebnik.answer",
+    "pk": 1,
+    "fields": {
+        "answer_type": "checkbox",
+        "score": 13,
+        "answer_text": "dhfksdjf",
+        "is_valid": false,
+        "answer_input": "",
+        "valid_input": "",
+        "question": 1
+    }
+}
+]

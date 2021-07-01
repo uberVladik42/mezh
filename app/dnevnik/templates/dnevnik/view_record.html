@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <video id="video" controls src=""></video>
+
+    <script defer>
+        let id = window.location.search.substr(1);
+        document.getElementById('video').setAttribute('src', `../../records/${id}.mp4`);
+    </script>
+</body>
+</html>

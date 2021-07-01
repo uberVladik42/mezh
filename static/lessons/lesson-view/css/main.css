@@ -1,0 +1,79 @@
+main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0 192px;
+    padding-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+    z-index: 0;
+}
+
+.info-header {
+    margin-top: 64px;   
+    /* max-width: 1024px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-header > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.lesson-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.lesson-theme {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 4px;
+    opacity: .32;
+}
+
+.lesson-date {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.lesson-teacher {
+    font-size: 15px;
+    font-weight: 500;
+    opacity: .32;
+}
+
+.info-content {
+    margin-top: 32px;
+}
+
+.homework {
+    font-size: 16px;
+    font-weight: 500;
+    opacity: .64;
+    min-height: 128px;
+}
+
+.additional-container {
+    margin-top: 64px;
+}
+
+.additional-container > h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 32px;
+}
+
+.tests {
+    display: flex;
+}
+
+.test {
+    min-height: 206px;
+}
+
+.tests > .test:first-child {
+    margin-left: 0;
+}

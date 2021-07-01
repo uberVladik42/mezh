@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Видеурок</title>
+
+    <script src='https://meet.jit.si/external_api.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'dnevnik/js/watch_conference.js' %}"></script>
+
+</head>
+
+<body>
+<script type="text/javascript">
+    watch("{{ link|safe }}", "{{ conference_name|safe }}");
+</script>
+    {% if is_teacher %}
+        <script type="text/javascript">
+            record();
+        </script>
+    {% endif %}
+</body>
+</html>

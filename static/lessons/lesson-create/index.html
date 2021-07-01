@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="logo" rel="shortcut icon" href="/res/logo-dark.png" type="image">
+    <title>МЭЖ - Тест</title>
+
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global-button.css' %}">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script defer src="../../js/global.js"></script>
+    <script defer src="js/index.js"></script>
+</head>
+<body class="dark-theme" style="background-color: #000000;">
+    <div class="bg">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+            <defs>
+                <clipPath id="clip-Test_BG">
+                    <rect width="1920" height="1080"/>
+                </clipPath>
+            </defs>
+            <g id="Test_BG" data-name="Test BG" clip-path="url(#clip-Test_BG)">
+                <rect id="Rectangle_1977" data-name="Rectangle 1977" width="128" height="128" transform="translate(-0.411 1080) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+                <rect id="Rectangle_1989" data-name="Rectangle 1989" width="128" height="128" transform="translate(1241.589 1080) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+                <rect id="Rectangle_1978" data-name="Rectangle 1978" width="64" height="64" transform="translate(152.324 1017.775) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+                <rect id="Rectangle_1985" data-name="Rectangle 1985" width="64" height="64" transform="translate(1394.324 1017.775) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+                <rect id="Rectangle_1986" data-name="Rectangle 1986" width="64" height="64" transform="translate(1456.549 955.549) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+                <rect id="Rectangle_1996" data-name="Rectangle 1996" width="64" height="64" transform="translate(651.775 1020.324) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+                <rect id="Rectangle_1995" data-name="Rectangle 1995" width="64" height="64" transform="translate(714 958.098) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+                <rect id="Rectangle_1979" data-name="Rectangle 1979" width="328" height="328" transform="translate(214.549 1080) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+                <rect id="Rectangle_1984" data-name="Rectangle 1984" width="328" height="328" transform="translate(1456.549 1080) rotate(-45)" fill="var(--text)" opacity="0.03"/>
+            </g>
+        </svg>
+    </div>
+
+    <header>
+        <a href="/" class="logo">МЭШ</a>
+        <div class="nav">
+            <a class="nav-el" href="/">Занятия</a>
+            <a class="nav-el" href="/">Успеваемость</a>
+            <a class="nav-el" href="/">Чаты</a>
+            <a class="nav-el" href="/static/index.html">Документация</a>
+        </div>
+        <div id="theme-switch" class="theme-switch">
+            Темная тема
+        </div>
+        <div class="user">
+            <h1 class="username">
+                Дмитрий Пипискин
+            </h1>
+            <p class="action" id="logout">
+                Выйти
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <div class="info-container">
+            <div class="info-header">
+                <div>
+                    <h1 id="lesson-name" class="lesson-name">Математика</h1>
+                    <p id="lesson-theme" class="lesson-theme">Тригонометрическая функция</p>
+                </div>
+                <div>
+                    <h1 id="lesson-date" class="lesson-date">11 мая, 09:25 - 10:05</h1>
+                    <p id="lesson-teacher" class="lesson-teacher">Тамара Степановна</p>
+                </div>
+            </div>
+            <div class="info-content">
+                <textarea placeholder="Домашнее задание" class="homework-field" name="homework" id="homework" cols="30" rows="10"></textarea>
+                <div id="lesson-link" class="lesson-link">
+                    <div class="join-button button" data-join="">
+                        Скопировать ссылку
+                    </div>
+                    <a href="">Ссылка загружается</a>
+                </div>
+            </div>
+        </div>
+        <div class="additional-container">
+            <h1>Приклерпленные материалы</h1>
+            <div id="tests-container" class="tests">
+                <div class="test" >
+                    <a href="http://127.0.0.1:5500/pages/test">
+                        <h1 class="title">Математика. Производные 12</h1>
+                        <p class="status">Нажмите чтобы посмотреть результаты</p>
+                    </a>
+                    <div class="test-footer">
+                        <div class="edit-button">Редактировать</div>
+                        <div class="remove-button"><span>+</span></div>
+                    </div>
+                </div>
+                <div class="add-test">
+                    +
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

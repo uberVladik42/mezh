@@ -1,0 +1,86 @@
+image: python:latest
+
+# This folder is cached between builds (http://docs.gitlab.com/ce/ci/yaml/README.html#cache)
+cache:
+  paths:
+  - ~/.cache/pip/
+
+before_script:
+  - python -V
+
+stages:
+  - test
+  - style
+  - docs
+  - deploy
+
+pep8:
+  stage: style
+  before_script:
+  - pip install -r ci/pycodestyle_requirements.txt
+  - chmod +x ci/pycodestyle_runner.sh
+  script:
+  - ./ci/pycodestyle_runner.sh
+  artifacts:
+    paths:
+      - public/pycodestyle.txt
+
+pylint:
+  stage: style
+  before_script:
+  - pip install -r ci/pylint_requirements.txt
+  - chmod +x ci/pylint_runner.sh
+  - export DJANGO_SETTINGS_MODULE=ivconf.settings
+  script:
+  - ./ci/pylint_runner.sh
+  artifacts:
+    paths:
+      - public/pylint.svg
+      - public/pylint.html
+
+test:
+  stage: test
+  before_script:
+  - pip install -r requirements.txt
+  script:
+  - coverage run manage.py test
+  - coverage report --omit=manage.py
+  - coverage html --omit=manage.py
+  - mkdir public
+  - mv htmlcov public/coverage
+  artifacts:
+    paths:
+      - public/coverage
+
+sphinx:
+  stage: docs
+  before_script:
+  - pip install -r ci/sphinx_requirements.txt
+  - chmod +x ci/sphinx_runner.sh
+  script:
+  - cd docs
+  - export PYTHONPATH=..
+  - make html
+  - cd ..
+  - mv docs/_build/html public/docs
+  artifacts:
+    paths:
+      - public/docs
+
+upload_to_server:
+    stage: deploy
+    before_script:
+        - apt-get install -qq git
+        - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+        - eval $(ssh-agent -s)
+        - ssh-add <(echo "$SSH_PRIVATE_KEY")
+        - mkdir -p ~/.ssh
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    script:
+        - ssh $SSH_USER@$SSH_HOST "cd prodserver_conf/pfs102_institutum_virtual && git checkout master && git pull origin master && exit"
+        - scp -r public $SSH_USER@$SSH_HOST:prodserver_conf/pfs102_institutum_virtual/public
+        - ssh $SSH_USER@$SSH_HOST "cd prodserver_conf && docker stop pfs102_institutum_virtual || true && docker rm pfs102_institutum_virtual || true && docker-compose build pfs102_institutum_virtual && docker-compose up -d pfs102_institutum_virtual && exit"
+    only:
+        - master
+
+

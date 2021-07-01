@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="logo" rel="shortcut icon" href="/res/logo-dark.png" type="image">
+    <title>МЭЖ - Аккаунт</title>
+
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'personal_account/css/main.css' %}">
+
+    <script>
+        let csrf_token = `{{ csrf_token }}`
+    </script>
+
+    <script defer src="{% static 'js/global.js' %}"></script>
+    <script defer src="{% static 'personal_account/js/index.js' %}"></script>
+</head>
+
+<body>
+    <header>
+        <a href="/" class="logo">МЭЖ</a>
+        <div class="nav">
+            <a class="nav-el active">Занятия</a>
+            <a class="nav-el" href="/pages/stats/index.html">Успеваемость</a>
+            <a class="nav-el" href="/">Чаты</a>
+        </div>
+        <div id="theme-switch" class="theme-switch">
+            Темная тема
+        </div>
+        <div class="user">
+            <h1 class="username">
+                {{ user.username }}
+            </h1>
+            <p class="action" id="logout">
+                Выйти
+            </p>
+        </div>
+    </header>
+
+    <main style="display: block; align-items: left;">
+            <div class="markdatabox" style="padding: 10% ;">
+                <div>
+                    <table width="40%" >
+                        <caption  height="50" width="50%" class="markdatabox-h1">Основная информация</caption><br><br>
+                        <thead>
+                          <tr>
+                            <th height="35" class="markdatabox-bio" style="text-align: left;">Класс</th>
+                            <td id="klass" height="35" class="markdatabox-biodetails" style="text-align: left;">10 И</td>
+                          </tr>
+                        </thead>
+                        <thead>
+                          <tr>
+                            <th height="35" class="markdatabox-bio" style="text-align: left;">Полное имя</th>
+                            <td id="name" height="35" class="markdatabox-biodetails" style="text-align: left;">
+                                {{ user.username }}
+                            </td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th height="35" class="markdatabox-bio" style="text-align: left;">Почта</th>
+                            <td id="mail" height="35" class="markdatabox-biodetails" style="text-align: left;">
+                                {{ user.email }}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th height="35" class="markdatabox-bio" style="text-align: left;">Номер телефона</th>
+                            <td id="phone-number" height="35" class="markdatabox-biodetails" style="text-align: left;">
+                                +7 (***) *** ** 47
+                            </td>
+                          </tr>
+                          <tr>
+                           <th height="35" class="markdatabox-bio" style="text-align: left;">Дата регистрации</th>
+                           <td id="registration-date" height="35" class="markdatabox-biodetails" style="text-align: left;">
+                               {{ user.date_joined }}
+                           </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <br><br><br>
+                      <table width="50%" >
+                        <caption  height="100" width="50%" class="markdatabox-h2" style="text-align: left;">Безопасность</caption><br><br>
+                        <thead>
+                          <tr>
+                            <th height="35"  class="markdatabox-bio" style="text-align: left;">Старый пароль</th>
+                            <td height="35" class="markdatabox-biodetails" style="text-align: left;">*****</td>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th height="35" class="markdatabox-bio" style="text-align: left;">Повторный пароль</th>
+                            <td height="35" class="markdatabox-biodetails" style="text-align: left;">*****</td>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                          <tr>
+                            <th height="35" class="markdatabox-bio" style="text-align: left;">Новый пароль</th>
+                            <td height="35" class="markdatabox-biodetails" style="text-align: left;">*****</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <br><br><br>
+                    <input id="mainpage-button" type="submit" class="main-page-button" value="Сменить">       
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,168 @@
+main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0 192px;
+    padding-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+    z-index: 0;
+}
+
+.info-header {
+    margin-top: 64px;   
+    /* max-width: 1024px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-header > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.lesson-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.lesson-theme {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 4px;
+    opacity: .32;
+}
+
+.lesson-date {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.lesson-teacher {
+    font-size: 15px;
+    font-weight: 500;
+    opacity: .32;
+}
+
+.info-content {
+    margin-top: 32px;
+}
+
+.homework-field {
+    font-size: 16px;
+    font-weight: 500;
+    min-height: 128px;
+    width: 100%;
+    margin-bottom: 64px;
+}
+
+.additional-container {
+    margin-top: 64px;
+}
+
+.additional-container > h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 32px;
+}
+
+.lesson-link {
+    display: flex;
+    align-items: center;
+}
+
+.lesson-link > a {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: .32;
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 32px;
+}
+
+.tests {
+    display: flex;
+}
+
+.test {
+    min-height: 206px;
+    padding-bottom: 0;
+}
+
+.test > a {
+    flex: 1;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.add-test {
+    min-height: 206px;
+    min-width: 312px;
+    margin-left: 32px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+
+    opacity: 1;
+    background-color: rgba(var(--dark-rgb), 1);
+    color: var(--white);
+
+    font-size: 24px;
+    font-weight: 500;
+
+    transition: all .16s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.add-test:hover {
+    opacity: .86;
+    background-color: rgba(var(--accent-rgb), 1);
+}
+
+.test-footer {
+    width: calc(100% + 48px);
+    margin-left: -24px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.test-footer > * {
+    cursor: pointer;
+    transition: all .16s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.remove-button {
+    font-size: 24px;
+    font-weight: normal;
+
+    height: 64px;
+    width: 64px;
+    display: grid;
+    place-items: center;
+}
+
+.remove-button > span {
+    transform: rotate(45deg);
+}
+
+.remove-button:hover {
+    background-color: rgba(var(--accent-rgb), 1);
+}
+
+.edit-button {
+    height: 64px;
+    flex: 1;
+    padding-left: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.edit-button:hover {
+    background-color: rgba(var(--white-rgb), .04);
+}
+
+.tests > .test:first-child {
+    margin-left: 0;
+}

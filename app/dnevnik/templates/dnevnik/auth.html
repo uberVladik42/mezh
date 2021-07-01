@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link id="logo" rel="shortcut icon" href="/static/res/logo-dark.png" type="image">
+    <title>МЭЖ - Вход</title>
+
+    <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'dnevnik/css/auth.css' %}"/>
+
+    {% csrf_token %}
+    <script>
+        let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
+
+    <script defer src="/static/js/global.js"></script>
+    <script defer src="/static/dnevnik/js/auth.js"></script>
+</head>
+<body>
+<header>
+    <a href="{% url 'dnevnik:index' %}" class="logo">МЭШ</a>
+    <div class="nav">
+        <a class="nav-el" href="{% url 'dnevnik:index' %}">Занятия</a>
+        <a class="nav-el" href="/">Успеваемость</a>
+        <a class="nav-el" href="/">Чаты</a>
+        <a class="nav-el" href="/static/index.html">Документация</a>
+    </div>
+    <div id="theme-switch" class="theme-switch">Темная тема</div>
+    <div class="user">
+        {% if user.is_authenticated %}
+            <h1 class="username">{{ user.username }}</h1>
+            <p class="action" id="logout">Выйти</p>
+        {% else %}
+            <h1 class="username">Аноним</h1>
+            <p class="action" id="login">Войти</p>
+        {% endif %}
+    </div>
+</header>
+<main>
+    <div id="forms" class="forms">
+        <div class="form-container toright" id="">
+            <form class="auth-form" action="">
+                <h1>Войти</h1>
+                <p>Нет аккаунта? <span class="span-action" id="pg-2">Создайте его!</span></p>
+                <input type="text" class="input-field" placeholder="Логин" id="login-username-input">
+                <input type="password" class="input-field" placeholder="Пароль" id="login-password-input">
+                <div class="action-buttons">
+                    <input type="submit" class="main-action" value="Войти" id="login-submit">
+                    <input type="button" class="secondary-action" value="Забыли пароль?">
+                </div>
+            </form>
+        </div>
+        <div class="form-container toright" id="">
+            <form class="auth-form" action="">
+                <h1>Регистрация</h1>
+                <p>Уже есть аккаунт? <span class="span-action" id="pg-1">Войти.</span></p>
+                <input type="email" class="input-field" placeholder="Почта" id="register-email-input">
+                <input type="text" class="input-field" placeholder="Логин" id="register-username-input">
+                <input type="password" class="input-field" placeholder="Пароль" id="register-password-input1">
+                <input type="password" class="input-field" placeholder="Повторите пароль" id="register-password-input2">
+                <div class="action-buttons">
+                    <input type="submit" class="main-action" value="зарегистрироваться" id="register-submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="img-container">
+        <img src="/static/res/bg.jpg" alt="">
+    </div>
+</main>
+</body>
+</html>

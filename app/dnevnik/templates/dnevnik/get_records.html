@@ -1,0 +1,32 @@
+
+{% load static %}
+<!doctype html>
+
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Main page</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'dnevnik/js/redir.js' %}"></script>
+
+</head>
+
+<body>
+    <p>Тут будут появляться записи конференций.</p>
+    <ul>
+        {% for record in records %}
+            <li>
+                <button type="button" class="btn btn-default" id="test" name="{{ record }}">{{ record }}</button>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+</video>
+</body>
+</html>

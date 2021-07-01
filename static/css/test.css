@@ -1,0 +1,56 @@
+.test {
+    min-height: 100%;
+    min-width: 256px;
+    width: fit-content;
+    padding: 16px 24px;
+    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+
+    opacity: 1;
+    background-color: rgba(var(--dark-rgb), 1);
+    color: var(--white);
+    text-decoration: none;
+
+    transition: opacity .16s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.test.completed {
+    background-color: rgba(var(--accent-rgb), 1);
+    color: var(--white);
+}
+
+.test.ended {
+    background-color: rgba(var(--text-rgb), .04);
+    color: var(--text);
+}
+
+.test:hover {
+    opacity: .86;
+}
+
+.test .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.test .status {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: .48;
+    margin-bottom: 12px;
+}
+
+.test > .test-footer {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.test > .test-footer > .mark {
+    font-size: 18px;
+}

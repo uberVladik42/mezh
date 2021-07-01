@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="logo" rel="shortcut icon" href="/res/logo-dark.png" type="image">
+    <title>МЭЖ - Результаты учеников</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'uchebnik/test-statistics/css/main.css' %}">
+
+    <script>
+        let csrf_token = `{{ csrf_token }}`
+        let data = {{data|safe}};
+        let creator_permission = ('{{user.username}}' == data['creator'])? true : false;
+        console.log(data, creator_permission);
+    </script>
+
+    <script defer src="{% static 'js/global.js' %}"></script>
+    <script defer src="{% static 'uchebnik/test-statistics/js/index.js' %}"></script>
+</head>
+
+<body>
+    <div id='params'>
+        <h2 id='title'></h2>
+        <p id='time'> Временной предел: </p>
+        <p id='creator'> Создатель: </p>
+        <p id='date'> Дата создания: </p>
+        <p id='tries'> Количество возможных попыток: </p>
+    </div>
+
+    <div id='exercise-statistics'>
+        <p id='passings'> Количество прохождений: </p>
+        <p id='top-score'> Лучший балл: </p>
+        <p id='top-time'> Лучшее время: </p>
+        <p id='average-score'> Средний балл: </p>
+        <p id='average-time'> Среднее время: </p>
+    </div>
+    <br>
+    <h4>Результаты учеников:</h4>
+    <div class='results' id='tested-pupils'> </div>
+
+    <button id='show-res'>скрыть</button>
+    <!-- <button id='test-button'>test</button> -->
+</body>
+</html>

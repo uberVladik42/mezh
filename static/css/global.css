@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --white: #fff;
+    --white-rgb: 255, 255, 255;
+
+    --dark: #25242b;
+    --dark-rgb: 37, 36, 43;
+}
+
+.light-theme {
+    --bg: #FFFFFF;
+    --text: #201C31;
+    --accent: #544EF5;
+    --accent-brighter: #8c88fd;
+    --board-lines: #6F6AF6;
+    --secondary: #EC8A5F;
+
+    --bg-rgb: 255, 255, 255;
+    --text-rgb: 32, 28, 49;
+    --accent-rgb: 84, 78, 245;
+    --board-lines-rgb: 111, 106, 246;
+    --secondary-rgb: 236, 138, 95;
+
+    --dark: #201C31 !important;
+    --dark-rgb: 32, 28, 49 !important;
+}
+
+.dark-theme {
+    --bg: #1c1b22;
+    --text: #FFFFFF;
+    --accent: #ee5c3f;
+    --accent-brighter: #ec7861;
+    --board-lines: #c74b32;
+    --secondary: #5d88ff;
+
+    --bg-rgb: 28, 27, 34;
+    --text-rgb: 255, 255, 255;
+    --accent-rgb: 238, 92, 63;
+    --board-lines-rgb: 199, 75, 50;
+    --secondary-rgb: 93, 136, 255;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.dark-theme > main > div.img-container > img {
+    filter: hue-rotate(120deg) saturate(.8);
+}
+
+body {
+    background-color: var(--bg) !important;
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+}
+
+input {
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    z-index: 1;
+}
+
+.flex-filler {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0);
+    user-select: none;
+}
+
+.invisible {
+    display: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.bg {
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+    transition: none;
+}
+
+.bg svg {
+    height: 100vh;
+}
+
+.answer-box {
+    min-width: 128px;
+
+    display: flex;
+    align-items: center;
+    padding: 4px 0;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.answer-box > input {
+    display: none;
+}
+
+.answer-box > .checkmark {
+    height: 16px;
+    width: 16px;
+    border: rgba(var(--text-rgb), .16) 2px solid;
+    margin-right: 16px;
+    background: rgba(var(--text-rgb), 0);
+
+    transition: all .16s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.answer-box:hover .checkmark {
+    border: rgba(var(--text-rgb), .08) 2px solid;
+    background: rgba(var(--text-rgb), .08);
+}
+
+.answer-box input:checked ~ .checkmark {
+    border: rgba(var(--accent-rgb), 1) 2px solid;
+    background: rgba(var(--accent-rgb), 1);
+}
+
+.answer-box input[type="radio"] ~ .checkmark {
+    border-radius: 50%;
+}
+
+.answer-add .checkmark {
+    width: 16px;
+    text-align: center;
+    margin-right: 16px;
+}
+
+.answer-add {
+    margin-top: 16px;
+    min-width: 128px;
+
+    display: flex;
+    align-items: center;
+    padding: 4px 0;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    opacity: .32;
+
+    cursor: pointer;
+
+    transition: opacity .16s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.answer-add:hover {
+    opacity: .48;
+}

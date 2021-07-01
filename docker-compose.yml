@@ -1,0 +1,50 @@
+services:
+    nginx:
+        container_name: 'front_nginx'
+        image: 'nginx:latest'
+        restart: 'always'
+        ports:
+            - '80:80'
+            - '443:443'
+        volumes:
+            - '/etc/letsencrypt:/etc/letsencrypt'
+            - './nginx/logs:/var/log/nginx'
+            - './nginx/config:/etc/nginx'
+            - './nginx/www:/var/www'
+            - pfs102_institutum_virtual_mediavolume:/var/www/pfs102_institutum_virtual/media          # <------
+            - pfs102_institutum_virtual_staticvolume:/var/www/pfs102_institutum_virtual/static        # <------
+        depends_on:
+            - 'mysql'
+            - 'postgresql'
+            - 'redis'
+            - 'pfs102_institutum_virtual'                                                        # <------
+
+
+    # Вся эта секция
+    pfs102_institutum_virtual:
+        container_name: 'pfs102_institutum_virtual'
+        build:
+            context: ./pfs102_institutum_virtual
+            dockerfile: ./docker/Dockerfile
+        environment:
+            IV_DEBUG: ''
+            IV_MYSQL_DATABASE: ${MYSQL_DB}
+            IV_MYSQL_USER: ${MYSQL_USER}
+            IV_MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            IV_MYSQL_HOST: mysql
+            IV_MYSQL_PORT: 3306
+            IV_SECRET_KEY: ${SECRET_KEY}                 # !!!!!! читайте дальше перед заполнением
+        volumes:
+            - 'pfs102_institutum_virtual_mediavolume:/pfs102_institutum_virtual/media'
+            - 'pfs102_institutum_virtual_staticvolume:/pfs102_institutum_virtual/staticroot'
+            - 'pfs102_institutum_virtual_logvolume:/var/log/pfs102_institutum_virtual/'
+        ports:
+            - '8085:8085'
+        depends_on:
+            - 'mysql'
+
+
+volumes:
+    pfs102_institutum_virtual_mediavolume:                                               # <------
+    pfs102_institutum_virtual_staticvolume:                                              # <------
+    pfs102_institutum_virtual_logvolume:                                                 # <------

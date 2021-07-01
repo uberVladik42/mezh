@@ -1,0 +1,95 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    min-height: calc(100vh - var(--header-height));
+    z-index: 0;
+}
+
+/* ------ Sideboard ------ */
+
+.side-board{
+    background: var(--accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 88px 32px 32px 32px;
+    min-height: inherit;
+    width: 128px;
+    z-index: 1;
+    font-weight: bold;
+    color: white;
+}
+
+
+/* ------ Main ------ */
+
+.stats_header {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    margin-left: 32px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.stats_body {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+}
+
+
+table, th, td {
+  border: 1px solid var(--text);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding-left: 16px;
+  padding-right: 16px;
+  min-width: 48px;
+  text-align: center;
+  font-weight: bold;
+}
+
+tr {
+  height: 48px;
+}
+
+td {
+  color: var(--accent);
+}
+
+td.notempty:hover {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+.score-detail {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 46px;
+    vertical-align: middle;
+    background: var(--bg);
+}
+
+.main-content {
+    padding-top: 88px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+}
+
