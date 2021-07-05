@@ -1,10 +1,9 @@
-import json
+# import json
 
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
-from app.diary.models import User
 
 """
 200 OK
@@ -25,22 +24,22 @@ from app.diary.models import User
 
 def auth_login(req):
     if req.method == "POST":
-        json_data = json.loads(req.body.decode("utf-8"))
-        next_url = json_data["next"]
-        # TODO: add data validation
-        user = authenticate(
-            username=json_data["username"],
-            password=json_data["password"]
-        )
-        if user:
+        # json_data = json.loads(req.body.decode("utf-8"))
+        username = req.POST.get("username")
+        password = req.POST.get("password")
+
+        if not any(not c.isalnum() for c in username):
+            user = authenticate(
+                username=username,
+                password=password
+            )
+            if not user: return HttpResponse(status=400)
             login(req, user)
-            if next_url:
-                return redirect(next_url)
             return redirect("/")
         return HttpResponse(status=400)
     elif req.method == "GET":
-        return HttpResponse(status=501)
-        # return render(req, "diary/login.html")
+        return render(req, "diary/login.html")
+    return HttpResponse(status=405)
 
 
 def auth_logout(req):
@@ -54,37 +53,24 @@ def auth_logout(req):
 
 def auth_register(req):
     if req.method == "POST":
-        json_data = json.loads(req.body.decode("utf-8"))
-        next_url = json_data["next"]
-        # TODO: add data validation
-        if json_data["password1"] == json_data["password2"]:
+        # json_data = json.loads(req.body.decode("utf-8"))
+        username = req.POST.get("username")
+        email = req.POST.get("email")
+        password1 = req.POST.get("password1")
+        password2 = req.POST.get("password2")
+
+        # TODO: add email validation and check "password1 == password2" for vulnerability
+        if not any(not c.isalnum() for c in username) and password1 == password2:
             user = User.objects.create_user(
-                json_data["username"],
-                json_data["email"],
-                json_data["password1"],
+                username=username,
+                email=email,
+                password=password1
             )
             login(req, user)
-            if next_url:
-                return redirect(next_url)
             return redirect("/")
         return HttpResponse(status=400)
     elif req.method == "GET":
-        return HttpResponse(status=501)
-        # return render(req, "diary/register.html")
-
+        return render(req, "diary/register.html")
+    return HttpResponse(status=405)
 
 # TODO: add actions with account (i.e. password reset, profile customization)
-
-# sketch; must NOT be used
-def set_account_data(req):
-    if req.method == "PUT":
-        json_data = json.loads(req.body.decode("utf-8"))
-
-        old_password = json_data["old_password"]
-        new_password = json_data["new_password"]
-
-        username = json_data["username"]
-        email = json_data["email"]
-
-        return HttpResponse(status=501)
-    return HttpResponse(status=405)

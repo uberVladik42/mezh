@@ -1,6 +1,5 @@
+from django.contrib.auth.models import User
 from django.db import models as m
-
-from app.diary.models import User
 
 TITLE_LENGTH = 30
 CONTENT_LENGTH = 10000
@@ -10,7 +9,6 @@ class Exercise(m.Model):
     title = m.CharField(max_length=TITLE_LENGTH)
     creation_date = m.DateTimeField(auto_now=True)
     tries_limit = m.SmallIntegerField(default=1)
-    view_answers = m.BooleanField(default=False)
     creator = m.ForeignKey(User, on_delete=m.CASCADE)
 
     def get_exercise(self):
@@ -25,18 +23,18 @@ class Quest(m.Model):
     exercise = m.ForeignKey(Exercise, on_delete=m.CASCADE)
 
     def __str__(self):
-        return "{}".format(self.content, self.exercise.creactor, self.exercise.creation_date)
+        return "{}".format(self.content, self.exercise.creator, self.exercise.creation_date)
 
 
 class Answer(m.Model):
     TYPES = (
-        ("file", "файл"),
+        # type for file(s)
         ("radio", "один из"),
         ("checkbox", "n из"),
         ("textbox", "ввод")
     )
     content = m.CharField(max_length=CONTENT_LENGTH)
-    type = m.CharField(max_length=16, default="radio", choices=TYPES)
+    type = m.CharField(max_length=8, default="radio", choices=TYPES)
     manual_check = m.BooleanField(default=False)
     quest = m.ForeignKey(Quest, on_delete=m.CASCADE)
 
@@ -45,8 +43,16 @@ class Answer(m.Model):
 
 
 class Result(m.Model):
-    exercise = m.OneToOneField(Exercise, on_delete=m.CASCADE)
+    exercise = m.ForeignKey(Exercise, on_delete=m.CASCADE)
+    passer = m.ForeignKey(User, on_delete=m.CASCADE)
+
+    def __str__(self):
+        return "result-{}".format(str(self.exercise))
 
 
 class ResultAnswer(m.Model):
-    answer = m.OneToOneField(Answer)
+    answers = m.ManyToManyField(Answer)
+    result = m.ForeignKey(Result, on_delete=m.CASCADE, null=True, blank=True)  # TODO: get rid of null & blank
+
+    # def __str__(self):
+    #     return str([str(answer) for answer in self.answers.objects.all()])

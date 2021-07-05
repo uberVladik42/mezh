@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>МЭЖ - Регистрация</title>
+</head>
+<body>
+<form action="{% url 'diary:register' %}" method="POST">
+    <input type="text" name="username" required/>
+    <input type="email" name="email" required/>
+    <input type="password" name="password1" required/>
+    <input type="password" name="password2" required/>
+    <input type="submit"/> {% csrf_token %}
+</form>
+</body>
+</html>
