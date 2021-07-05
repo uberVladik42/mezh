@@ -64,7 +64,8 @@ def edit_exercise(req):
             creator = req.user
 
             if not any(not c.isalnum() for c in title) and tries_limit.isnum():
-                m.Exercise.objects.update(
+                exercise = get_object_or_404(m.Exercise, pk=slug)
+                exercise.update(
                     title=title,
                     creation_date=creation_date,
                     tries_limit=tries_limit,
