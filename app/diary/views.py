@@ -13,6 +13,9 @@ from django.shortcuts import render, redirect
 400 Bad Request
     The server cannot or will not process the request due to an apparent client error
     (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).
+404 Not Found
+    The requested resource could not be found but may be available in the future.
+    Subsequent requests by the client are permissible.
 405 Method Not Allowed
     A request method is not supported for the requested resource; for example,
     a GET request on a form that requires data to be presented via POST, or a PUT request on a read-only resource.
@@ -33,7 +36,7 @@ def auth_login(req):
                 username=username,
                 password=password
             )
-            if not user: return HttpResponse(status=400)
+            if not user: return HttpResponse(status=404)
             login(req, user)
             return redirect("/")
         return HttpResponse(status=400)
